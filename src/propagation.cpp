@@ -1,5 +1,5 @@
-#include "headers/vecManip.hpp"
-#include "headers/RK4.hpp"
+#include "../headers/vecManip.hpp"
+#include "../headers/RK4.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -32,9 +32,10 @@ int main(int argc, char **argv){
 	
 	long double counter = 0.0;
 	
-	std::ofstream fout("SystemStates.txt");
+	std::ofstream fout("../SystemStates.txt");
+	std::cout << "Test!\n";
 	
-	if(argc != 8){
+	if(argc != 7){
 		std::cout << "Incorrect number of command line parameters\n";
 		std::cout << "Correct command line: ./propagation posX posY posZ velX velY velZ numOrbits\n";
 		std::exit(1);
@@ -50,8 +51,8 @@ int main(int argc, char **argv){
 	
 	unsigned int numOrbits = atof(argv[7]);
 	
-	//pos = {7e6, 0, 0};
-	//vel = {0, MOON_SPEED, 0};
+	pos = {7e6, 0, 0};
+	vel = {0, MOON_SPEED, 0};
 	
 	while(1){
 	
@@ -61,6 +62,8 @@ int main(int argc, char **argv){
   		}
 
                 evaluate(moonFunc, pos, vel, t, dt, posNew, velNew);
+		
+		std::cout << "HERE!\n";
 		
                 fout <<  posNew[0] << '\t' << posNew[1] << '\t' << posNew[2] << "\t0\t0\t0\t"
 			<< velNew[0] << '\t' << velNew[1] <<  '\t' << velNew[2] << '\n';

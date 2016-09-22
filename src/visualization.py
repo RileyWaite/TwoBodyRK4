@@ -47,7 +47,7 @@ pasty = moon.pos.y
 orbits = 0
 
 #Open MoonPos.txt (output file for TBOS.c)
-with open('SystemStates.txt', 'r') as fd:
+with open('../SystemStates.txt', 'r') as fd:
     for line in fd:
 	#Reads in the position vectors for earth/moon
 	moon.pos.x = (longdouble(line.split()[0]))
